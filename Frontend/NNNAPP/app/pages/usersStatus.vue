@@ -3,19 +3,15 @@
         <h1>
             User Status Page
         </h1>
-        <div class="table-users" id="toplabels">
-            <div class="toplabeles" v-for="integer in Array.from({ length: 30 }, (_, i) => i + 1)" :key="integer">
-                <span>Day {{ integer }}</span>
+        <div class="table-container">
+            <div class="side-labels-container">
+                <div class="side-labels" v-for="value in 5">{{ value }}</div>
             </div>
-        </div>
-        <div class="users">
-            <div class="table-users" v-for="user in ['User1', 'User2', 'User3']" :key="user">
-                <div class="toplabeles">
-                    <span>{{ user }}</span>
+            <div class="labels">
+                <div class="titles" v-for="days in daysInNovember">{{ days }}
+                    <div class="users-data" v-for="users in 5" :class="{ sucess : (users % 2 === 0) , failure : (users % 2 !== 0)  }"></div>
                 </div>
-                <div class="toplabeles" v-for="integer in Array.from({ length: 30 }, (_, i) => i + 1)" :key="integer">
-                    <span>Status {{ integer }}</span>
-                </div>
+
             </div>
         </div>
     </div>
@@ -39,6 +35,70 @@ h1 {
         border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
+.table-container{
+    display: flex;
+}
+
+.labels{
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        padding: 10px 10px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.side-labels-container{
+    display: flex;
+    flex-direction: column;
+    gap : 16px;
+    justify-content: flex-end;
+    margin-right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 10px 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.side-labels{
+    font-family: 'Red Hat Display', sans-serif;
+    color: #ffffff;
+    font-size: 14px;
+
+}
+
+.users-data{
+    font-family: 'Red Hat Display', sans-serif;
+    color: #ffffff;
+    font-size: 14px;
+    width: 15px;
+    height: 15px;
+    border-radius: 2px;
+    background-color: rgb(255, 98, 98);
+    box-shadow: 1px 1px 3px #ff2323;
+}
+
+.failure {
+    background-color: rgb(255, 98, 98);
+    box-shadow: 1px 1px 3px #ff2323;
+}
+
+.sucess {
+    background-color: rgb(103, 234, 74);
+    box-shadow: 1px 1px 3px #32ff23;
+}
+
+.titles{
+    font-family: 'Red Hat Display', sans-serif;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+
 .users-status {
     display: flex;
     flex-direction: column;
@@ -46,49 +106,21 @@ h1 {
     align-items: center;
     height: 100vh;
 }
-
-.table-users {
-        gap: 5px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin-left: 10px;
-        margin-right: 10px;
-        max-width: calc(100vw - 50px);
-        overflow-x: scroll;
-        overflow-y: hidden;
-
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 5px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        margin: 8px;
-    }
-    .toplabeles{
-        margin: 10px;
-        width: 60px;
-    }
-    span {
-        font-family: 'Red Hat Display', sans-serif;
-        color: #ffffff;
-        white-space: nowrap;
-        width: 60px;
-    }
-    ::-webkit-scrollbar {
-        height: 0px;
-    }
-
-.users{
-    margin-top: 20px;
+.labels {
+    display: flex;
+    gap : 10px;
+    justify-content: center;
+    align-items: center;
 }
 
-#toplabels {
-    margin-top: 20px;
-    margin-left: 80px;
-    max-width: calc(100vw - 120px);
+.titles {
+    display: flex;
+    flex-direction: column;
+    gap : 20px;
+    justify-content: center;
+    align-items: center;
 }
+
 </style>
 
 
